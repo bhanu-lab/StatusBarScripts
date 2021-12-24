@@ -2,10 +2,16 @@
 
 #run as online 2> /dev/null to digest errors
 
-val=$(timeout 1 curl -Is  http://www.google.com | head -n 1 | awk '{print $2}')
+#val=$(timeout 1 curl -Is  http://www.google.com | head -n 1 | awk '{print $2}')
 #echo $val
-if [ $val -eq 200 ]; then
-    echo "Online"
-else
+#if [ $val -eq 200 ]; then
+#    echo "Online"
+#else
+#    echo "Offline"
+#fi
+if [[ "$(ping -c 1 8.8.8.8 | grep '100% packet loss' )" != "" ]]; then
     echo "Offline"
+else
+    echo "Online"
 fi
+
