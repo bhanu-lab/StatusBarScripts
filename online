@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#run as online 2> /dev/null to digest errors
+
+val=$(timeout 1 curl -Is  http://www.google.com | head -n 1 | awk '{print $2}')
+#echo $val
+if [ $val -eq 200 ]; then
+    echo "Online"
+else
+    echo "Offline"
+fi
