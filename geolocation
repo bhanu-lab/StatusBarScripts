@@ -1,8 +1,4 @@
 #!/bin/bash
-
-
-name=$(iwconfig | grep ESSID | awk -F ":" '{ print $2 }' | sed 's/"//g')
-echo $name
 URL="http://ip-api.com/json/"
 ip="157.47.48.49"
 val=$(curl $(echo $URL$ip) | jq --jsonargs '.country, .regionName, .city, .lat, .lon, .isp' | tr '\n' '-')
